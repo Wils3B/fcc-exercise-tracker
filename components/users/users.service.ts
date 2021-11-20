@@ -16,8 +16,9 @@ const UsersService = {
     const userUpdated = await UsersRepository.addExercise(id, docObj);
     const exerciseCreated = userUpdated.log ? userUpdated.log[userUpdated.log.length - 1] : null;
     return {
-      username: userUpdated.username,
       ...exerciseCreated,
+      username: userUpdated.username,
+      _id: userUpdated.id,
     };
   },
   async findUser(id: string, query: GetUserDto) {
