@@ -18,6 +18,21 @@ const UsersRepository = {
       });
     });
   },
+  addExercise(id: string, exercise: any): Promise<User> {
+    return new Promise((resolve, reject) => {
+      UserModel.findByIdAndUpdate(
+        id,
+        { $push: { log: exercise } },
+        { new: true },
+        (error, result) => {
+          if (error) reject(error);
+          else if (result == null)
+            reject(new Error('Adding exercise failed because entity is not found'));
+          else resolve(result.toJSON() as User);
+        },
+      );
+    });
+  },
 };
 
 export default UsersRepository;

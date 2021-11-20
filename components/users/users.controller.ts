@@ -19,6 +19,15 @@ const UsersController = {
       res.json({ error: e.message });
     }
   },
+  async addExercise(req: Request, res: Response) {
+    try {
+      console.log(req.body, req.params);
+      const userUpdated = await UsersService.addExercise(req.params.id, req.body);
+      res.json(userUpdated);
+    } catch (e: any) {
+      res.json({ error: e.message });
+    }
+  },
 };
 
 export default UsersController;
