@@ -16,6 +16,9 @@ const UserSchema = new Schema(
   {
     id: true,
     versionKey: false,
+    toJSON: {
+      virtuals: true,
+    },
   },
 );
 const UserModel = model('users', UserSchema);
