@@ -28,11 +28,11 @@ const UsersService = {
     if (q.log.date) {
       log = log.filter((item) => {
         const date = new Date(item.date);
-        return date <= q.log.date.$lte && date >= q.log.date.$lte;
+        return date <= q.log.date.$lte && date >= q.log.date.$gte;
       });
     }
-    if (q.$slice) {
-      log = log.slice(0, q.$slice);
+    if (q.log.$slice) {
+      log = log.slice(0, q.log.$slice);
     }
     return { ...user, log, count: log.length };
   },
