@@ -28,7 +28,7 @@ const UsersController = {
   },
   async findUser(req: Request, res: Response) {
     try {
-      const user = await UsersService.findUser(req.params.id);
+      const user = await UsersService.findUser(req.params.id, req.query);
       res.json(user);
     } catch (e: any) {
       res.json({ error: e.message });
