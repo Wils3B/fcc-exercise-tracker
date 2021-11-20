@@ -33,6 +33,15 @@ const UsersRepository = {
       );
     });
   },
+  findUser(id: string): Promise<User> {
+    return new Promise<User>((resolve, reject) => {
+      UserModel.findById(id, '', {}, (error, result) => {
+        if (error) reject(error);
+        else if (result == null) reject(new Error('user is not found'));
+        else resolve(result.toJSON() as User);
+      });
+    });
+  },
 };
 
 export default UsersRepository;
