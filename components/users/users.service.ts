@@ -13,11 +13,10 @@ const UsersService = {
       docObj.date = new Date(exercise.date);
     }
     const userUpdated = await UsersRepository.addExercise(id, docObj);
+    const exerciseCreated = userUpdated.log ? userUpdated.log[userUpdated.log.length - 1] : null;
     return {
-      id: userUpdated.id,
-      _id: userUpdated.id,
       username: userUpdated.username,
-      exercise: userUpdated.log ? userUpdated.log[userUpdated.log.length - 1] : null,
+      ...exerciseCreated,
     };
   },
   async findUser(id: string) {
